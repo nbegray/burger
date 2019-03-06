@@ -1,20 +1,20 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
-  $(".change-devoured").on("click", function(event) {
+  $(".change-sleep").on("click", function(event) {
     var id = $(this).data("id");
-    var newDevoured = $(this).data("newDevoured");
+    var newSleep = $(this).data("newsleep");
 
-    var newDevouredState = {
-      devoured: newDevoured
+    var newSleepState = {
+      devoured: newSleep
     };
 
     // Send the PUT request.
     $.ajax("/api/burgers/" + id, {
       type: "PUT",
-      data: newDevouredState
+      data: newSleepState
     }).then(
       function() {
-        console.log("changed devoured to", newDevoured);
+        console.log("changed sleep to", newSleep);
         // Reload the page to get the updated list
         location.reload();
       }
@@ -24,26 +24,26 @@ $(function() {
   $(".create-form").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
-
-    var newBurger = {
-      name: $("#name").val().trim(),
-      devoured: $("[name=devoured]:checked").val().trim()
+    console.log("In create burger")
+    var newCat = {
+      name: $("#ca").val().trim(),
+      devoured: false
     };
 
     // Send the POST request.
     $.ajax("/api/burgers", {
       type: "POST",
-      data: newBurger
+      data: newCat
     }).then(
       function() {
-        console.log("created new burger");
+        console.log("created new cat");
         // Reload the page to get the updated list
         location.reload();
       }
     );
   });
 
-  $(".delete-burger").on("click", function(event) {
+  $(".delete-cat").on("click", function(event) {
     var id = $(this).data("id");
 
     // Send the DELETE request.
@@ -51,7 +51,7 @@ $(function() {
       type: "DELETE"
     }).then(
       function() {
-        console.log("deleted burger", id);
+        console.log("deleted cat", id);
         // Reload the page to get the updated list
         location.reload();
       }
